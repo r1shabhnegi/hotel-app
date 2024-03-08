@@ -82,4 +82,6 @@ router.post(
   }
 );
 
+router.get('/', verifyToken);
+
 export default router;

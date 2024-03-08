@@ -9,12 +9,14 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { v2 as cloudinary } from 'cloudinary';
 
+(async () =>
+  await mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string))();
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
 
