@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
-import Toast from '../components/Toast';
-import { useQuery } from '@tanstack/react-query';
-import * as apiClient from '../api-client';
+import React, { useContext, useState } from "react";
+import Toast from "../components/Toast";
+import { useQuery } from "@tanstack/react-query";
+import * as apiClient from "../api-client";
 
 type ToastMessage = {
   message: string;
-  type: 'SUCCESS' | 'ERROR';
+  type: "SUCCESS" | "ERROR";
 };
 
 type AppContext = {
@@ -23,7 +23,7 @@ export const AppContextProvider = ({
   const [toast, setToast] = useState<ToastMessage | undefined>(undefined);
 
   const { isError } = useQuery({
-    queryKey: ['validateToken'],
+    queryKey: ["validateToken"],
     queryFn: apiClient.validateToken,
     retry: false,
   });

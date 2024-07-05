@@ -50,7 +50,7 @@ const Register = () => {
           First Name
           <input
             type='text'
-            className='w-full px-2 py-1 font-normal border rounded'
+            className='w-full px-2 py-1 font-normal border rounded outline outline-1 outline-offset-2'
             {...register('firstName', { required: 'This field is required' })}
           />
           {errors.firstName && (

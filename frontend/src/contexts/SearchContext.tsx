@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 type SearchContext = {
   destination: string;
@@ -28,12 +28,12 @@ const SearchContext = React.createContext<SearchContext | undefined>(undefined);
 export const SearchContextProvider = ({
   children,
 }: SearchContextProviderChildren) => {
-  const [destination, setDestination] = useState<string>('');
+  const [destination, setDestination] = useState<string>("");
   const [checkIn, setCheckIn] = useState<Date>(new Date());
   const [checkOut, setCheckOut] = useState<Date>(new Date());
   const [adultCount, setAdultCount] = useState<number>(1);
   const [childCount, setChildCount] = useState<number>(0);
-  const [hotelId, setHotelId] = useState<string>('');
+  const [hotelId, setHotelId] = useState<string>("");
 
   const saveSearchValues = (
     destination: string,
@@ -69,6 +69,7 @@ export const SearchContextProvider = ({
 
 // Part 3
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSearchContext = () => {
   const context = useContext(SearchContext);
   return context as SearchContext;
