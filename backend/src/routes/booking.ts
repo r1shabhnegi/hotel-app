@@ -4,7 +4,13 @@ import { Booking } from "../models/booking";
 
 const router = Router();
 
-router.get("/", verifyToken, async (req: Request, res: Response) => {});
+router.get("/", verifyToken, async (req: Request, res: Response) => {
+  const userId = req.userId;
+
+  const bookings = await Booking.find({ userId });
+
+  res.status(200).send(bookings);
+});
 
 router.post("/", verifyToken, async (req: Request, res: Response) => {
   console.log(req.body);
