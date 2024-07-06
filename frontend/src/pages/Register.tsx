@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import * as apiClient from '../api-client';
-import { useAppContext } from '../contexts/AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContext";
+import { useNavigate } from "react-router-dom";
 
 export type RegisterFormData = {
   firstName: string;
@@ -27,12 +27,12 @@ const Register = () => {
   const mutation = useMutation({
     mutationFn: apiClient.register,
     onSuccess: async () => {
-      showToast({ message: 'Registration Successful!', type: 'SUCCESS' });
-      await queryClient.invalidateQueries({ queryKey: ['ValidationToken'] });
-      navigate('/');
+      showToast({ message: "Registration Successful!", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["ValidationToken"] });
+      navigate("/");
     },
     onError: (error: Error) => {
-      showToast({ message: error.message, type: 'ERROR' });
+      showToast({ message: error.message, type: "ERROR" });
     },
   });
 
@@ -51,7 +51,7 @@ const Register = () => {
           <input
             type='text'
             className='w-full px-2 py-1 font-normal border rounded outline outline-1 outline-offset-2'
-            {...register('firstName', { required: 'This field is required' })}
+            {...register("firstName", { required: "This field is required" })}
           />
           {errors.firstName && (
             <span className='text-red-500'>{errors.firstName.message}</span>
@@ -63,7 +63,7 @@ const Register = () => {
           <input
             type='text'
             className='w-full px-2 py-1 font-normal border rounded'
-            {...register('lastName', { required: 'This field is required' })}
+            {...register("lastName", { required: "This field is required" })}
           />
           {errors.lastName && (
             <span className='text-red-500'>{errors.lastName.message}</span>
@@ -75,7 +75,7 @@ const Register = () => {
         <input
           type='email'
           className='w-full px-2 py-1 font-normal border rounded'
-          {...register('email', { required: 'This field is required' })}
+          {...register("email", { required: "This field is required" })}
         />
         {errors.email && (
           <span className='text-red-500'>{errors.email.message}</span>
@@ -86,11 +86,11 @@ const Register = () => {
         <input
           type='password'
           className='w-full px-2 py-1 font-normal border rounded'
-          {...register('password', {
-            required: 'This field is required',
+          {...register("password", {
+            required: "This field is required",
             minLength: {
               value: 6,
-              message: 'Password must be at least 6 character',
+              message: "Password must be at least 6 character",
             },
           })}
         />
@@ -103,12 +103,12 @@ const Register = () => {
         <input
           type='password'
           className='w-full px-2 py-1 font-normal border rounded'
-          {...register('confirmPassword', {
+          {...register("confirmPassword", {
             validate: (val) => {
               if (!val) {
-                return 'This field is required';
-              } else if (watch('password') !== val) {
-                return 'Your passwords do not match';
+                return "This field is required";
+              } else if (watch("password") !== val) {
+                return "Your passwords do not match";
               }
             },
           })}
@@ -120,7 +120,7 @@ const Register = () => {
       <span>
         <button
           type='submit'
-          className='p-2 text-xl font-bold text-white bg-blue-600 hover:bg-blue-500'>
+          className='p-2 text-xl font-bold text-white bg-pink-600 hover:bg-pink-500'>
           Create Account
         </button>
       </span>

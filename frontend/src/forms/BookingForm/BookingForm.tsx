@@ -2,11 +2,16 @@ import { useForm } from "react-hook-form";
 import { UserType } from "../../../../backend/src/shared/types";
 
 import { useSearchContext } from "../../contexts/SearchContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import * as apiClient from "../../api-client";
+import { useAppContext } from "../../contexts/AppContext";
 
 type Props = {
   currentUser: UserType;
   totalCost: number;
+  hotelName: string;
+  imageUrl: string;
 };
 
 export type BookingFormData = {
@@ -22,11 +27,45 @@ export type BookingFormData = {
   totalCost: number;
 };
 
-const BookingForm = ({ currentUser, totalCost }: Props) => {
+const BookingForm = ({
+  currentUser,
+  totalCost,
+  hotelName,
+  imageUrl,
+}: Props) => {
+  const { showToast } = useAppContext();
   const search = useSearchContext();
   const { hotelId } = useParams();
+  const navigate = useNavigate();
 
-  const onSubmit = () => {};
+  const { mutateAsync } = useMutation({
+    mutationFn: apiClient.createBooking,
+    onSuccess: () => {
+      showToast({ message: "Hotel Booked Successfully", type: "SUCCESS" });
+      navigate("/");
+    },
+    onError: () => {
+      showToast({ message: "Error Booking Hotel", type: "ERROR" });
+    },
+  });
+
+  const onSubmit = async () => {
+    console.log({
+      checkIn: search.checkIn.toISOString(),
+      checkOut: search.checkOut.toISOString(),
+      hotelPrice: totalCost,
+      hotelName,
+      imageUrl,
+    });
+    await mutateAsync({
+      checkIn: search.checkIn.toISOString(),
+      checkOut: search.checkOut.toISOString(),
+      hotelPrice: totalCost,
+      hotelName,
+      imageUrl,
+    });
+  };
+
   const { handleSubmit, register } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
@@ -82,7 +121,7 @@ const BookingForm = ({ currentUser, totalCost }: Props) => {
       <div className='space-y-2'>
         <h2 className='text-xl font-semibold'>Your Price Summary</h2>
 
-        <div className='p-4 bg-blue-200 rounded-md'>
+        <div className='p-4 bg-pink-200 rounded-md'>
           <div className='text-lg font-semibold'>
             Total Cost: £{totalCost.toFixed(2)}
           </div>
@@ -92,16 +131,12 @@ const BookingForm = ({ currentUser, totalCost }: Props) => {
 
       <div className='space-y-2'>
         <h3 className='text-xl font-semibold'> Payment Details</h3>
-        {/* <CardElement
-          id='payment-element'
-          className='p-2 text-sm border rounded-md'
-        /> */}
       </div>
 
       <div className='flex justify-end'>
         <button
           type='submit'
-          className='p-2 font-bold text-white bg-blue-600 hover:bg-blue-500 text-md disabled:bg-gray-500'>
+          className='p-2 font-bold text-white bg-pink-600 hover:bg-pink-500 text-md disabled:bg-gray-500'>
           Confirm Booking
         </button>
       </div>

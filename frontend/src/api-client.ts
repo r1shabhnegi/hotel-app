@@ -193,3 +193,38 @@ export const fetchCurrentUser = async (): Promise<UserType> => {
   }
   return response.json();
 };
+
+type CreateBookingType = {
+  checkIn: string;
+  checkOut: string;
+  hotelPrice: number;
+  hotelName: string;
+  imageUrl: string;
+};
+
+export const createBooking = async (data: CreateBookingType) => {
+  const response = await fetch(`${API_BASE_URL}/api/booking`, {
+    method: "POST",
+    credentials: "include",
+    // body: data,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update hotel");
+  }
+  return response.json();
+};
+
+export const getBookings = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/booking`, {
+    credentials: "include",
+  });
+  if (!response.ok) {
+    throw new Error("Error fetching user");
+  }
+  return response.json();
+};

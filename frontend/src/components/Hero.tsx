@@ -1,11 +1,16 @@
+import SearchBar from "./SearchBar";
+
 const Hero = () => {
   return (
-    <div className='bg-blue-800 pb-16'>
-      <div className='container mx-auto flex flex-col gap-2'>
-        <h1 className='text-5xl text-white -font-bold'>Find your next stay</h1>
-        <p className='text-2xl text-white'>
-          Search low prices on hotels for your dream vacations...
-        </p>
+    <div className='pb-10 bg-pink-700'>
+      <div className='container flex flex-col gap-2 mx-auto'>
+        <h1 className='text-5xl text-white -font-bold'>
+          Search Hotels to stay
+        </h1>
+        <p className='text-2xl text-white'>Best hotels, best price</p>
+      </div>
+      <div className='container mx-auto mt-8'>
+        <SearchBar />
       </div>
     </div>
   );

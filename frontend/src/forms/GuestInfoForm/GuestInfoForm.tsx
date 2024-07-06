@@ -67,7 +67,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   };
 
   return (
-    <div className='flex flex-col gap-4 p-4 bg-blue-200'>
+    <div className='flex flex-col gap-4 p-4 bg-pink-200'>
       <h3 className='font-bold text-md'>£{pricePerNight}</h3>
       <form
         onSubmit={
@@ -141,11 +141,11 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             )}
           </div>
           {isLoggedIn ? (
-            <button className='h-full p-2 text-xl font-bold text-white bg-blue-600 hover:bg-blue-500'>
+            <button className='h-full p-2 text-xl font-bold text-white bg-pink-600 hover:bg-pink-500'>
               Book Now
             </button>
           ) : (
-            <button className='h-full p-2 text-xl font-bold text-white bg-blue-600 hover:bg-blue-500'>
+            <button className='h-full p-2 text-xl font-bold text-white bg-pink-600 hover:bg-pink-500'>
               Sign in to Book
             </button>
           )}

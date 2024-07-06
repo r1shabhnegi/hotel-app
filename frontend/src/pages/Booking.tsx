@@ -51,6 +51,8 @@ const Booking = () => {
         <BookingForm
           currentUser={currentUser}
           totalCost={hotel.pricePerNight}
+          hotelName={hotel.name}
+          imageUrl={hotel.imageUrls[0]}
         />
       )}
     </div>

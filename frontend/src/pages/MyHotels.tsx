@@ -1,20 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom';
-import * as apiClient from '../api-client';
-import { useAppContext } from '../contexts/AppContext';
-import { BsBuilding, BsMap, BsStar } from 'react-icons/bs';
-import { BiHotel, BiMoney } from 'react-icons/bi';
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContext";
+import { BsBuilding, BsMap, BsStar } from "react-icons/bs";
+import { BiHotel, BiMoney } from "react-icons/bi";
 
 const MyHotels = () => {
   const { showToast } = useAppContext();
 
   const { data: hotelData, isError } = useQuery({
-    queryKey: ['fetchMyHotels'],
+    queryKey: ["fetchMyHotels"],
     queryFn: apiClient.fetchMyHotels,
   });
 
   if (isError) {
-    showToast({ message: 'Something went wrong!', type: 'ERROR' });
+    showToast({ message: "Something went wrong!", type: "ERROR" });
   }
 
   if (!hotelData) {
@@ -27,7 +27,7 @@ const MyHotels = () => {
         <h1 className='text-3xl font-bold'>My Hotels</h1>
         <Link
           to='/add-hotel'
-          className='flex p-2 text-xl font-bold text-white bg-blue-600 hover:bg-blue-500'>
+          className='flex p-2 text-xl font-bold text-white bg-pink-600 hover:bg-pink-500'>
           Add Hotel
         </Link>
       </span>
@@ -64,7 +64,7 @@ const MyHotels = () => {
             <span className='flex justify-end'>
               <Link
                 to={`/edit-hotel/${hotel._id}`}
-                className='flex p-2 text-xl font-bold text-white bg-blue-600 hover:bg-blue-500'>
+                className='flex p-2 text-xl font-bold text-white bg-pink-600 hover:bg-pink-500'>
                 View Details
               </Link>
             </span>
