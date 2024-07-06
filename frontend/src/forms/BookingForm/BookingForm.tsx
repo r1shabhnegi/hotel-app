@@ -1,19 +1,12 @@
 import { useForm } from "react-hook-form";
-import {
-  //   PaymentIntentResponse,
-  UserType,
-} from "../../../../backend/src/shared/types";
-// import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-// import { StripeCardElement } from "@stripe/stripe-js";
+import { UserType } from "../../../../backend/src/shared/types";
+
 import { useSearchContext } from "../../contexts/SearchContext";
 import { useParams } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import * as apiClient from "../../api-client";
-import { useAppContext } from "../../contexts/AppContext";
 
 type Props = {
   currentUser: UserType;
-  //   paymentIntent: PaymentIntentResponse;
+  totalCost: number;
 };
 
 export type BookingFormData = {
@@ -29,28 +22,11 @@ export type BookingFormData = {
   totalCost: number;
 };
 
-const BookingForm = ({ currentUser }: Props) => {
-  //   const stripe = useStripe();
-  //   const elements = useElements();
-
+const BookingForm = ({ currentUser, totalCost }: Props) => {
   const search = useSearchContext();
   const { hotelId } = useParams();
 
   const onSubmit = () => {};
-
-  //   const { showToast } = useAppContext();
-
-  //   const { mutate: bookRoom, isPending: isLoading } = useMutation({
-  //     mutationFn: apiClient.createRoomBooking,
-
-  //     onSuccess: () => {
-  //       showToast({ message: "Booking Saved!", type: "SUCCESS" });
-  //     },
-  //     onError: () => {
-  //       showToast({ message: "Error saving booking", type: "ERROR" });
-  //     },
-  //   });
-
   const { handleSubmit, register } = useForm<BookingFormData>({
     defaultValues: {
       firstName: currentUser.firstName,
@@ -61,26 +37,9 @@ const BookingForm = ({ currentUser }: Props) => {
       checkIn: search.checkIn.toISOString(),
       checkOut: search.checkOut.toISOString(),
       hotelId: hotelId,
-
-      //   totalCost: paymentIntent.totalCost,
+      totalCost,
     },
   });
-
-  //   const onSubmit = async (formData: BookingFormData) => {
-  //     if (!stripe || !elements) {
-  //       return;
-  //     }
-
-  //     const result = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
-  //       payment_method: {
-  //         card: elements.getElement(CardElement) as StripeCardElement,
-  //       },
-  //     });
-
-  //     if (result.paymentIntent?.status === "succeeded") {
-  //       bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
-  //     }
-  //   };
 
   return (
     <form
@@ -125,7 +84,7 @@ const BookingForm = ({ currentUser }: Props) => {
 
         <div className='p-4 bg-blue-200 rounded-md'>
           <div className='text-lg font-semibold'>
-            {/* Total Cost: £{totalCost.toFixed(2)} */}
+            Total Cost: £{totalCost.toFixed(2)}
           </div>
           <div className='text-xs'>Includes taxes and charges</div>
         </div>
