@@ -1,6 +1,6 @@
-import { AiFillStar } from 'react-icons/ai';
-import { HotelType } from '../../../backend/src/shared/types';
-import { Link } from 'react-router-dom';
+import { AiFillStar } from "react-icons/ai";
+import { HotelType } from "../../../backend/src/shared/types";
+import { Link } from "react-router-dom";
 
 type Props = {
   hotel: HotelType;
@@ -21,7 +21,10 @@ const SearchResultsCard = ({ hotel }: Props) => {
           <div className='flex items-center'>
             <span className='flex'>
               {Array.from({ length: hotel.starRating }).map(() => (
-                <AiFillStar className='fill-yellow-400' />
+                <AiFillStar
+                  key={Math.round(Math.random() * 10000)}
+                  className='fill-yellow-400'
+                />
               ))}
             </span>
             <span className='ml-1 text-sm'>{hotel.type}</span>
@@ -40,7 +43,9 @@ const SearchResultsCard = ({ hotel }: Props) => {
         <div className='grid items-end grid-cols-2 whitespace-nowrap'>
           <div className='flex items-center gap-1'>
             {hotel.facilities.slice(0, 3).map((facility) => (
-              <span className='p-2 text-xs font-bold rounded-lg bg-slate-300 whitespace-nowrap'>
+              <span
+                key={facility + Math.round(Math.random() * 1000)}
+                className='p-2 text-xs font-bold rounded-lg bg-slate-300 whitespace-nowrap'>
                 {facility}
               </span>
             ))}
