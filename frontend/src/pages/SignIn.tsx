@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import * as apiClient from '../api-client';
-import { useAppContext } from '../contexts/AppContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContext";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export type SignInFormData = {
   email: string;
@@ -11,16 +11,17 @@ export type SignInFormData = {
 const SignIn = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const location = useLocation();
   const { showToast } = useAppContext();
   const mutation = useMutation({
     mutationFn: apiClient.signIn,
     onSuccess: async () => {
-      showToast({ message: 'Sign in Successful!', type: 'SUCCESS' });
-      await queryClient.invalidateQueries({ queryKey: ['validateToken'] });
-      navigate('/');
+      showToast({ message: "Sign in Successful!", type: "SUCCESS" });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      navigate(location.state?.from?.pathname || "/");
     },
     onError: (error: Error) => {
-      showToast({ message: error.message, type: 'ERROR' });
+      showToast({ message: error.message, type: "ERROR" });
     },
   });
 
@@ -45,7 +46,7 @@ const SignIn = () => {
         <input
           type='email'
           className='w-full px-2 py-1 font-normal border rounded'
-          {...register('email', { required: 'This field is required' })}
+          {...register("email", { required: "This field is required" })}
         />
         {errors.email && (
           <span className='text-red-500'>{errors.email.message}</span>
@@ -56,11 +57,11 @@ const SignIn = () => {
         <input
           type='password'
           className='w-full px-2 py-1 font-normal border rounded'
-          {...register('password', {
-            required: 'This field is required',
+          {...register("password", {
+            required: "This field is required",
             minLength: {
               value: 6,
-              message: 'Password must be at least 6 character',
+              message: "Password must be at least 6 character",
             },
           })}
         />

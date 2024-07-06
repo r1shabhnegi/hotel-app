@@ -16,24 +16,35 @@ type SearchContext = {
   ) => void;
 };
 
-// Part 1
-type SearchContextProviderChildren = {
+const SearchContext = React.createContext<SearchContext | undefined>(undefined);
+
+type SearchContextProviderProps = {
   children: React.ReactNode;
 };
 
-const SearchContext = React.createContext<SearchContext | undefined>(undefined);
-
-// Part 2
-
 export const SearchContextProvider = ({
   children,
-}: SearchContextProviderChildren) => {
-  const [destination, setDestination] = useState<string>("");
-  const [checkIn, setCheckIn] = useState<Date>(new Date());
-  const [checkOut, setCheckOut] = useState<Date>(new Date());
-  const [adultCount, setAdultCount] = useState<number>(1);
-  const [childCount, setChildCount] = useState<number>(0);
-  const [hotelId, setHotelId] = useState<string>("");
+}: SearchContextProviderProps) => {
+  const [destination, setDestination] = useState<string>(
+    () => sessionStorage.getItem("destination") || ""
+  );
+  const [checkIn, setCheckIn] = useState<Date>(
+    () =>
+      new Date(sessionStorage.getItem("checkIn") || new Date().toISOString())
+  );
+  const [checkOut, setCheckOut] = useState<Date>(
+    () =>
+      new Date(sessionStorage.getItem("checkOut") || new Date().toISOString())
+  );
+  const [adultCount, setAdultCount] = useState<number>(() =>
+    parseInt(sessionStorage.getItem("adultCount") || "1")
+  );
+  const [childCount, setChildCount] = useState<number>(() =>
+    parseInt(sessionStorage.getItem("childCount") || "1")
+  );
+  const [hotelId, setHotelId] = useState<string>(
+    () => sessionStorage.getItem("hotelID") || ""
+  );
 
   const saveSearchValues = (
     destination: string,
@@ -48,7 +59,19 @@ export const SearchContextProvider = ({
     setCheckOut(checkOut);
     setAdultCount(adultCount);
     setChildCount(childCount);
-    hotelId && setHotelId(hotelId);
+    if (hotelId) {
+      setHotelId(hotelId);
+    }
+
+    sessionStorage.setItem("destination", destination);
+    sessionStorage.setItem("checkIn", checkIn.toISOString());
+    sessionStorage.setItem("checkOut", checkOut.toISOString());
+    sessionStorage.setItem("adultCount", adultCount.toString());
+    sessionStorage.setItem("childCount", childCount.toString());
+
+    if (hotelId) {
+      sessionStorage.setItem("hotelId", hotelId);
+    }
   };
 
   return (
@@ -67,9 +90,6 @@ export const SearchContextProvider = ({
   );
 };
 
-// Part 3
-
-// eslint-disable-next-line react-refresh/only-export-components
 export const useSearchContext = () => {
   const context = useContext(SearchContext);
   return context as SearchContext;
