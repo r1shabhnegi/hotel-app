@@ -5,6 +5,7 @@ import { HotelSearchResponse } from "../shared/types";
 const router = express.Router();
 
 router.get("/search", async (req: Request, res: Response) => {
+  // console.log("search-", req.query);
   try {
     const query = constructSearchQuery(req.query);
 

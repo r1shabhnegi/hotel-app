@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchContext } from "../contexts/SearchContext";
 import * as apiClient from "../api-client";
 import { useState } from "react";
@@ -6,7 +6,7 @@ import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StartRatingFilter";
 import HotelTypesFilter from "../components/HotelTypeFilter";
-import FacilitiesFilter from "../components/FacilitiesFilter";
+import FacilitiesFilter from "../components/FacilityFilter";
 import PriceFilter from "../components/PriceFilter";
 
 const Search = () => {
@@ -32,9 +32,10 @@ const Search = () => {
     sortOption,
   };
 
-  const { data: hotelData } = useQuery(["searchHotels", searchParams], () =>
-    apiClient.searchHotels(searchParams)
-  );
+  const { data: hotelData } = useQuery({
+    queryKey: ["searchHotels", searchParams],
+    queryFn: () => apiClient.searchHotels(searchParams),
+  });
 
   const handleStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const starRating = event.target.value;
@@ -114,7 +115,10 @@ const Search = () => {
           </select>
         </div>
         {hotelData?.data.map((hotel) => (
-          <SearchResultsCard hotel={hotel} />
+          <SearchResultsCard
+            hotel={hotel}
+            key={hotel._id}
+          />
         ))}
         <div>
           <Pagination
