@@ -3,16 +3,17 @@ import {
   Route,
   Routes,
   Navigate,
-} from 'react-router-dom';
-import Layout from './layouts/Layout';
-import Register from './pages/Register';
-import SignIn from './pages/SignIn';
-import Home from './pages/Home';
-import AddHotel from './pages/AddHotel';
-import { useAppContext } from './contexts/AppContext';
-import MyHotels from './pages/MyHotels';
-import EditHotel from './pages/EditHotel';
-import Search from './pages/Search';
+} from "react-router-dom";
+import Layout from "./layouts/Layout";
+import Register from "./pages/Register";
+import SignIn from "./pages/SignIn";
+import Home from "./pages/Home";
+import AddHotel from "./pages/AddHotel";
+import { useAppContext } from "./contexts/AppContext";
+import MyHotels from "./pages/MyHotels";
+import EditHotel from "./pages/EditHotel";
+import Search from "./pages/Search";
+import Detail from "./pages/Detail";
 
 function App() {
   const { isLoggedIn } = useAppContext();
@@ -29,6 +30,14 @@ function App() {
           element={
             <Layout>
               <Search />
+            </Layout>
+          }
+        />
+        <Route
+          path='/detail/:hotelId'
+          element={
+            <Layout>
+              <Detail />
             </Layout>
           }
         />
