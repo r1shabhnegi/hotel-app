@@ -1,24 +1,7 @@
-import { HotelType } from "../../../src/shared/types";
-
-type Props = {
-  checkIn: Date;
-  checkOut: Date;
-  adultCount: number;
-  childCount: number;
-  numberOfNights: number;
-  hotel: HotelType;
-};
-
-const BookingDetailsSummary = ({
-  checkIn,
-  checkOut,
-  adultCount,
-  childCount,
-  numberOfNights,
-  hotel,
-}: Props) => {
-  return (
-    <div className='grid gap-4 p-5 border rounded-lg border-slate-300 h-fit'>
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const BookingDetailsSummary = ({ checkIn, checkOut, adultCount, childCount, numberOfNights, hotel, }) => {
+    return (<div className='grid gap-4 p-5 border rounded-lg border-slate-300 h-fit'>
       <h2 className='text-xl font-bold'>Your Booking Details</h2>
       <div className='py-2 border-b'>
         Location:
@@ -45,8 +28,6 @@ const BookingDetailsSummary = ({
           {adultCount} adults & {childCount} children
         </div>
       </div>
-    </div>
-  );
+    </div>);
 };
-
-export default BookingDetailsSummary;
+exports.default = BookingDetailsSummary;

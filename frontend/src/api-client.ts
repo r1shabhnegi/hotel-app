@@ -4,7 +4,7 @@ import {
   HotelSearchResponse,
   HotelType,
   UserType,
-} from "../../backend/src/shared/types";
+} from "../../src/shared/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 

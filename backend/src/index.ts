@@ -3,7 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import path from "path";
+// import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
@@ -32,7 +32,10 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+app.get("/", (req, res) => {
+  res.status(200).json({ msg: "Server is running" });
+});
+// app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -40,9 +43,9 @@ app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelsRoutes);
 app.use("/api/booking", bookingRouter);
 
-app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.get("*", (req: Request, res: Response) => {
+//   res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+// });
 
 app.listen(7000, () => {
   console.log("server running on localhost:7000");
