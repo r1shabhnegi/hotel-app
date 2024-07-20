@@ -40,10 +40,10 @@ const Search = () => {
   const handleStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const starRating = event.target.value;
 
-    setSelectedStars((prevStars) =>
+    setSelectedStars((prevStars: any) =>
       event.target.checked
         ? [...prevStars, starRating]
-        : prevStars.filter((star) => star !== starRating)
+        : prevStars.filter((star: any) => star !== starRating)
     );
   };
 
@@ -52,20 +52,22 @@ const Search = () => {
   ) => {
     const hotelType = event.target.value;
 
-    setSelectedHotelTypes((prevHotelTypes) =>
+    setSelectedHotelTypes((prevHotelTypes: any) =>
       event.target.checked
         ? [...prevHotelTypes, hotelType]
-        : prevHotelTypes.filter((hotel) => hotel !== hotelType)
+        : prevHotelTypes.filter((hotel: any) => hotel !== hotelType)
     );
   };
 
   const handleFacilityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const facility = event.target.value;
 
-    setSelectedFacilities((prevFacilities) =>
+    setSelectedFacilities((prevFacilities: any) =>
       event.target.checked
         ? [...prevFacilities, facility]
-        : prevFacilities.filter((prevFacility) => prevFacility !== facility)
+        : prevFacilities.filter(
+            (prevFacility: any) => prevFacility !== facility
+          )
     );
   };
 
