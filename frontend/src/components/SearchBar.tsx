@@ -41,7 +41,7 @@ const SearchBar = () => {
         />
         <input
           placeholder='Where are you going, (Eg.- Delhi)'
-          className='w-full text-sm sm:text-md focus:outline-none placeholder:text-gray-500'
+          className='w-full text-sm sm:text-md focus:outline-none placeholder:text-gray-700'
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
         />

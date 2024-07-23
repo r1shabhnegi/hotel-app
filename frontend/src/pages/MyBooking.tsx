@@ -9,7 +9,7 @@ const MyBooking = () => {
   console.log(data);
   if (isPending) return <></>;
   return (
-    <div className='px-20'>
+    <div className='px-5'>
       {data?.map(
         (booking: {
           checkIn: string;
@@ -33,23 +33,23 @@ const MyBooking = () => {
           return (
             <div
               key={booking._id}
-              className='flex items-center justify-center gap-20 px-10 py-20 mx-20 border rounded-lg'>
-              <div className='w-[20rem]'>
+              className='flex flex-col items-center justify-center gap-20 py-20 rounded-lg mx- sm:border lg:flex-row'>
+              <div className='w-full sm:w-[20rem]'>
                 <img
                   src={booking.imageUrl}
                   className='object-cover'
                   alt=''
                 />
               </div>
-              <div className='w-[20rem] flex flex-col gap-10'>
+              <div className='lg:w-[20rem]  flex flex-col  gap-10'>
                 <h1 className='text-6xl font-semibold'>{booking.hotelName}</h1>
-                <div className='flex gap-10'>
+                <div className='flex gap-10 flex-co sm:flex-row'>
                   <p className='flex flex-col items-center justify-center p-2 border rounded-md'>
-                    <span className='font-semibold'>Check in</span>{" "}
+                    <span className='font-semibold'>Check in</span>
                     {checkInDate}
                   </p>
-                  <p className='flex flex-col items-center justify-center border rounded-md'>
-                    <span className='font-semibold'>Check out</span>{" "}
+                  <p className='flex flex-col items-center justify-center p-2 border rounded-md'>
+                    <span className='font-semibold'>Check out</span>
                     {checkOutDate}
                   </p>
                 </div>
