@@ -73,7 +73,7 @@ const Search = () => {
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5'>
-      <div className='sticky p-5 border rounded-lg border-slate-300 h-fit top-10'>
+      <div className='p-5 border rounded-lg lg:sticky border-slate-300 h-fit top-10'>
         <div className='space-y-5'>
           <h3 className='pb-5 text-lg font-semibold border-b border-slate-300'>
             Filter by:
@@ -97,7 +97,7 @@ const Search = () => {
         </div>
       </div>
       <div className='flex flex-col gap-5'>
-        <div className='flex items-center justify-between'>
+        <div className='flex flex-col items-center justify-between gap-5 sm:flex-row'>
           <span className='text-xl font-bold'>
             {hotelData?.pagination.total} Hotels found
             {search.destination ? ` in ${search.destination}` : ""}

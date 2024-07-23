@@ -33,15 +33,15 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='grid items-center grid-cols-2 gap-4 bg-orange-40 p- lg:grid-cols-3 2xl:grid-cols-5'>
+      className='grid items-center grid-cols-1 gap-4 px-2 sm:grid-cols-2 bg-orange-40 p- lg:grid-cols-3 2xl:grid-cols-5'>
       <div className='flex flex-row items-center flex-1 p-2 bg-white rounded-lg '>
         <MdTravelExplore
           size={25}
           className='mr-2'
         />
         <input
-          placeholder='Where are you going'
-          className='w-full text-md focus:outline-none '
+          placeholder='Where are you going, (Eg.- Delhi)'
+          className='w-full text-sm sm:text-md focus:outline-none placeholder:text-gray-500'
           value={destination}
           onChange={(event) => setDestination(event.target.value)}
         />
@@ -51,7 +51,7 @@ const SearchBar = () => {
         <label className='flex items-center '>
           Adults:
           <input
-            className='w-full p-1 font-bold focus:outline-none'
+            className='w-full p-1 text-sm font-bold sm:text-md focus:outline-none'
             type='number'
             min={1}
             max={20}
@@ -62,7 +62,7 @@ const SearchBar = () => {
         <label className='flex items-center '>
           Children:
           <input
-            className='w-full p-1 font-bold focus:outline-none'
+            className='w-full p-1 text-sm font-bold sm:text-md focus:outline-none'
             type='number'
             min={1}
             max={20}
@@ -81,7 +81,7 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText='check-in Date'
-          className='min-w-full p-2 bg-white rounded-lg focus:outline-none'
+          className='w-full p-2 text-sm bg-white rounded-lg sm:text-md sm:min-w-min focus:outline-none'
           wrapperClassName='min-w-full'
         />
       </div>
@@ -95,7 +95,7 @@ const SearchBar = () => {
           minDate={minDate}
           maxDate={maxDate}
           placeholderText='check-in Date'
-          className='min-w-full p-2 bg-white rounded-lg focus:outline-none'
+          className='w-full p-2 text-sm bg-white rounded-lg sm:text-md sm:min-w-min focus:outline-none'
           wrapperClassName='min-w-full'
         />
       </div>

@@ -43,7 +43,7 @@ const Register = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className='flex flex-col gap-5'>
+      className='flex flex-col gap-5 px-2'>
       <h2 className='text-3xl font-bold'>Create an Account</h2>
       <div className='flex flex-col gap-5 md:flex-row'>
         <label className='flex-1 text-sm font-bold text-gray-700'>

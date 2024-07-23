@@ -6,21 +6,21 @@ const Header = () => {
   const { isLoggedIn } = useAppContext();
 
   return (
-    <div className='py-6 bg-pink-700'>
-      <div className='container flex justify-between mx-auto'>
-        <span className='text-3xl font-bold tracking-tight text-white'>
+    <div className='px-2 py-6 bg-pink-700'>
+      <div className='container flex flex-col justify-between gap-4 mx-auto sm:flex-row'>
+        <span className='text-2xl font-bold tracking-tight text-white sm:text-3xl'>
           <Link to='/'>Hotel Stay</Link>
         </span>
-        <span className='flex space-x-2'>
+        <span className='flex space-x-2 justify-evenly'>
           {isLoggedIn ? (
             <>
               <Link
-                className='flex items-center px-3 font-bold text-white rounded-full hover:bg-pink-600'
+                className='flex items-center text-base font-bold text-white rounded-full text-nowrap sm:px-3 hover:bg-pink-600'
                 to='/my-bookings'>
                 My Bookings
               </Link>
               <Link
-                className='flex items-center p-3 font-bold text-white rounded-full hover:bg-pink-600'
+                className='flex items-center text-base font-bold text-white rounded-full text-nowrap sm:px-3 hover:bg-pink-600'
                 to='/my-hotels'>
                 My Hotels
               </Link>
@@ -30,7 +30,7 @@ const Header = () => {
             <>
               <Link
                 to='/sign-in'
-                className='flex items-center px-3 font-bold text-pink-600 bg-white rounded-full hover:bg-gray-100 hover:text-green-500'>
+                className='flex items-center px-2 text-base font-bold text-pink-600 bg-white rounded-full text-nowrap sm:px-3 hover:bg-gray-100 hover:text-green-500'>
                 Sign In
               </Link>
             </>

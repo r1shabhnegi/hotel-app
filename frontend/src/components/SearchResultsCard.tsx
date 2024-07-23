@@ -8,7 +8,7 @@ type Props = {
 
 const SearchResultsCard = ({ hotel }: Props) => {
   return (
-    <div className='grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8'>
+    <div className='grid grid-cols-1 xl:grid-cols-[2fr_3fr] sm:border border-slate-300 rounded-lg p-8 gap-8'>
       <div className='w-full h-[300px]'>
         <img
           src={hotel.imageUrls[0]}
@@ -31,16 +31,18 @@ const SearchResultsCard = ({ hotel }: Props) => {
           </div>
           <Link
             to={`/detail/${hotel._id}`}
-            className='text-2xl font-bold cursor-pointer'>
+            className='text-lg font-bold cursor-pointer md:text-2xl sm:text-xl'>
             {hotel.name}
           </Link>
         </div>
 
         <div>
-          <div className='line-clamp-4'>{hotel.description}</div>
+          <div className='text-sm sm:text-base line-clamp-4'>
+            {hotel.description}
+          </div>
         </div>
 
-        <div className='grid items-end grid-cols-2 whitespace-nowrap'>
+        <div className='grid items-end grid-cols-1 sm:grid-cols-2 whitespace-nowrap'>
           <div className='flex items-center gap-1'>
             {hotel.facilities.slice(0, 3).map((facility) => (
               <span
@@ -49,16 +51,16 @@ const SearchResultsCard = ({ hotel }: Props) => {
                 {facility}
               </span>
             ))}
-            <span className='text-sm'>
+            <span className='text-xs'>
               {hotel.facilities.length > 3 &&
                 `+${hotel.facilities.length - 3} more`}
             </span>
           </div>
-          <div className='flex flex-col items-end gap-1'>
+          <div className='flex items-end justify-between gap-1 sm:justify-normal sm:flex-col'>
             <span className='font-bold'>${hotel.pricePerNight} per night</span>
             <Link
               to={`/detail/${hotel._id}`}
-              className='h-full p-2 text-xl font-bold text-white bg-pink-600 max-w-fit hover:bg-pink-500'>
+              className='h-full px-2 py-1.5 rounded-lg text-xs sm:text-base lg:text-lg font-bold text-white bg-pink-600 max-w-fit hover:bg-pink-500'>
               View More
             </Link>
           </div>
