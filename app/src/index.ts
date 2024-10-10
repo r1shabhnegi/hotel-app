@@ -31,6 +31,9 @@ app.use(
 );
 
 // app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+app.use("/server", (req, res) => {
+  res.send({ message: "working" });
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
